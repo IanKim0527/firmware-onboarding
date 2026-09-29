@@ -14,11 +14,20 @@ void LEDController::update(float temperature)
 }
 float LEDController::calculateBlinkInterval(float temperature)
 {
-    float interval = 1000 - (temperature * 20);
-
-    if (interval < 100)
+    if (temperature < 10.0)
     {
-        interval = 100;
+        return 1000;
     }
-    return interval;
+    else if (temperature < 25)
+    {
+        return 600;
+    }
+    else if (temperature < 35)
+    {
+        return 300;
+    }
+    else
+    {
+        return 100;
+    }
 }
